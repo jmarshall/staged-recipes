@@ -1,0 +1,37 @@
+package:
+  name: _current_repodata_bioconda_hack
+  version: 0.0.1
+
+build:
+  number: 0
+  noarch: generic  # FIXME perhaps?
+  skip: True  # [not unix]
+
+requirements:
+  run:
+    - libdeflate 1.6
+
+test:
+  commands:
+    - echo "hello"
+
+about:
+  home: https://github.com/conda-forge/_current_repodata_bioconda_hack-feedstock
+  license: LicenseRef-OTHER
+  summary: Meta-package to ensure Bioconda prerequisites are in current_repodata
+  description: |
+    Various packages from the Bioconda channel have pinnings on various
+    conda-forge packages. From time to time, these pinned versions are not
+    the latest versions of these packages in conda-forge, so conda-forge's
+    current_repodata.json does not contain them. This can lead to much older
+    versions of the Bioconda packages (which may have reduced dependencies
+    hence not require the conda-forge packages in question) being selected,
+    leading to user disappointment. This _current_repodata_bioconda_hack
+    package depends on the particular versions of these conda-forge packages
+    that are of interest to Bioconda, thus ensuring that they appear in
+    conda-forge's current_repodata.json and avoiding this problem.
+
+extra:
+  recipe-maintainers:
+    - bioconda/core  # FIXME who?
+    - jmarshall
